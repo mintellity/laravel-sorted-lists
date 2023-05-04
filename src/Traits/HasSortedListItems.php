@@ -11,14 +11,11 @@ trait HasSortedListItems
     public function __construct(
         public readonly string $listKey,
         public readonly string $listName
-    )
-    {
+    ) {
     }
 
     /**
      * Get all list items.
-     *
-     * @return Collection
      */
     public static function get(): Collection
     {
@@ -27,8 +24,6 @@ trait HasSortedListItems
 
     /**
      * Get the key of this list.
-     *
-     * @return string
      */
     public function getKey(): string
     {
@@ -37,8 +32,6 @@ trait HasSortedListItems
 
     /**
      * Get the name of this list.
-     *
-     * @return string
      */
     public function getName(): string
     {
@@ -47,8 +40,6 @@ trait HasSortedListItems
 
     /**
      * All items of the list.
-     *
-     * @return Builder
      */
     public function items(): Builder
     {
@@ -57,8 +48,6 @@ trait HasSortedListItems
 
     /**
      * Refresh the sequence of the list, e.g. after deleting an element.
-     *
-     * @return void
      */
     public function refreshSequence(): void
     {

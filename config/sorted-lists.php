@@ -4,6 +4,6 @@
 
 return [
     'lists' => [
-        'test' => 'Create new lists in the config'
+        'test' => 'Create new lists in the config',
     ],
 ];

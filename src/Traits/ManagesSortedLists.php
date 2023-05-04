@@ -12,9 +12,6 @@ trait ManagesSortedLists
 {
     /**
      * Handle the redirect after create/edit/destroy of an item.
-     *
-     * @param SortedListItem $sortedListItem
-     * @return mixed
      */
     public function redirectAfterAction(SortedListItem $sortedListItem): mixed
     {
@@ -23,35 +20,24 @@ trait ManagesSortedLists
 
     /**
      * Show view of sorted list.
-     *
-     * @param SortedList $sortedList
-     * @return View
      */
     public function view(SortedList $sortedList): View
     {
         return view('admin.sorted-lists.view', [
-            'sortedList' => $sortedList
+            'sortedList' => $sortedList,
         ]);
     }
 
     /**
      * Show form to create item.
-     *
-     * @param SortedList $sortedList
-     * @return View
      */
     public function createItem(SortedList $sortedList): View
     {
         return view('admin.sorted-lists.create', [
-            'sortedList' => $sortedList
+            'sortedList' => $sortedList,
         ]);
     }
 
-    /**
-     * @param SortedList $sortedList
-     * @param SortedListItemRequest $request
-     * @return RedirectResponse
-     */
     public function storeItem(SortedList $sortedList, SortedListItemRequest $request): RedirectResponse
     {
         $data = $request->validated();
@@ -63,22 +49,14 @@ trait ManagesSortedLists
 
     /**
      * Show form to edit item.
-     *
-     * @param SortedListItem $sortedListItem
-     * @return View
      */
     public function editItem(SortedListItem $sortedListItem): View
     {
         return view('admin.sorted-lists.edit', [
-            'sortedList' => $sortedListItem
+            'sortedList' => $sortedListItem,
         ]);
     }
 
-    /**
-     * @param SortedListItem $sortedListItem
-     * @param SortedListItemRequest $request
-     * @return RedirectResponse
-     */
     public function updateItem(SortedListItem $sortedListItem, SortedListItemRequest $request): RedirectResponse
     {
         $data = $request->validated();
@@ -87,10 +65,6 @@ trait ManagesSortedLists
         return $this->redirectAfterAction($sortedListItem);
     }
 
-    /**
-     * @param SortedListItem $sortedListItem
-     * @return RedirectResponse
-     */
     public function destroyItem(SortedListItem $sortedListItem): RedirectResponse
     {
         $sortedListItem->delete();

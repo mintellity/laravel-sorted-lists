@@ -11,30 +11,20 @@ class SortedListItemsTable extends Component
 {
     public DefaultSortedList $sortedList;
 
-    /**
-     * @param DefaultSortedList $sortedList
-     * @return void
-     */
     public function mount(DefaultSortedList $sortedList): void
     {
         $this->sortedList = $sortedList;
     }
 
-    /**
-     * @return View
-     */
     public function render(): View
     {
         $listItems = $this->sortedList->items()->get();
 
         return view('admin.sorted-list.livewire.sorted-list-items-table', [
-            'listItems' => $listItems
+            'listItems' => $listItems,
         ]);
     }
 
-    /**
-     * @param $list
-     */
     public function updateSequence($list): void
     {
         foreach ($list as $item) {

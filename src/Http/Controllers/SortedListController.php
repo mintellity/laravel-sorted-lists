@@ -12,11 +12,6 @@ class SortedListController extends Controller
 {
     //TODO Redirect after create/update/delete
 
-    /**
-     * @param SortedList $sortedList
-     * @param SortedListItemRequest $request
-     * @return RedirectResponse
-     */
     public function storeItem(SortedList $sortedList, SortedListItemRequest $request): RedirectResponse
     {
         $data = $request->validated();
@@ -26,12 +21,6 @@ class SortedListController extends Controller
         return redirect()->route('admin.sorted-list.edit', $sortedList->getKey());
     }
 
-
-    /**
-     * @param SortedListItem $sortedListItem
-     * @param SortedListItemRequest $request
-     * @return RedirectResponse
-     */
     public function updateItem(SortedListItem $sortedListItem, SortedListItemRequest $request): RedirectResponse
     {
         $data = $request->validated();
@@ -40,10 +29,6 @@ class SortedListController extends Controller
         return redirect()->route('admin.sorted-list.edit', $sortedListItem->list_key);
     }
 
-    /**
-     * @param SortedListItem $sortedListItem
-     * @return RedirectResponse
-     */
     public function destroyItem(SortedListItem $sortedListItem): RedirectResponse
     {
         $sortedListItem->delete();

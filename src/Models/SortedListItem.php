@@ -23,20 +23,16 @@ class SortedListItem extends Model
 
     /**
      * Snake case the primary key name.
-     *
-     * @param array $attributes
      */
     public function __construct(array $attributes = [])
     {
         parent::__construct($attributes);
         //Replace primaryKeyName = (classname)_id
-        $this->primaryKey = Str::snake(class_basename(static::class)) . '_id';
+        $this->primaryKey = Str::snake(class_basename(static::class)).'_id';
     }
 
     /**
      * All items in this list.
-     *
-     * @return HasMany
      */
     public function siblings(): HasMany
     {
@@ -46,8 +42,6 @@ class SortedListItem extends Model
 
     /**
      * The next item in this list.
-     *
-     * @return HasOne
      */
     public function next(): HasOne
     {
@@ -62,8 +56,6 @@ class SortedListItem extends Model
 
     /**
      * The previous item in this list.
-     *
-     * @return HasOne
      */
     public function previous(): HasOne
     {

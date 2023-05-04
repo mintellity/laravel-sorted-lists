@@ -8,8 +8,6 @@ class LaravelSortedLists
 {
     /**
      * Set the routes for the package.
-     *
-     * @return void
      */
     public static function routes(): void
     {
