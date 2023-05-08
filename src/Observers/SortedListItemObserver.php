@@ -8,9 +8,6 @@ class SortedListItemObserver
 {
     /**
      * Set sequence to max + 1.
-     *
-     * @param SortedListItem $sortedListItem
-     * @return void
      */
     public function creating(SortedListItem $sortedListItem): void
     {
@@ -20,9 +17,6 @@ class SortedListItemObserver
 
     /**
      * Reorder remaining items after deleting an item.
-     *
-     * @param SortedListItem $sortedListItem
-     * @return void
      */
     public function deleted(SortedListItem $sortedListItem): void
     {
