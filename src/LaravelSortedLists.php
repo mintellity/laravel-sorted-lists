@@ -45,7 +45,7 @@ class LaravelSortedLists
     {
         $listClass = collect(config('sorted-lists.lists'))->search($sortedListKey);
 
-        if (!$listClass) {
+        if (! $listClass) {
             return null;
         }
 
@@ -59,10 +59,10 @@ class LaravelSortedLists
     {
         $prefix = config('sorted-lists.route_prefix');
 
-        if ($prefix && !Str::endsWith($prefix, '.')) {
+        if ($prefix && ! Str::endsWith($prefix, '.')) {
             $prefix .= '.';
         }
 
-        return $prefix . $routeName;
+        return $prefix.$routeName;
     }
 }
