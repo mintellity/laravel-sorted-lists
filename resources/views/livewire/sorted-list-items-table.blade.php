@@ -27,12 +27,12 @@
                     </td>
 
                     <td class="text-end">
-                        <a href="{{route(\Mintellity\LaravelSortedLists\LaravelSortedLists::getRoute('sortedLists.editItem'), $listItem)}}"
+                        <a href="{{ route(\Mintellity\LaravelSortedLists\LaravelSortedLists::getRoute('sortedLists.editItem'), $listItem->list()->getKey(), $listItem) }}"
                            class="btn btn-sm btn-icon btn-light-primary btn-active-light-primary">
                             Bearbeiten
                         </a>
 
-                        <a href="{{route(\Mintellity\LaravelSortedLists\LaravelSortedLists::getRoute('sortedLists.destroyItem'), $listItem)}}"
+                        <a href="{{ route(\Mintellity\LaravelSortedLists\LaravelSortedLists::getRoute('sortedLists.destroyItem'), $listItem->list()->getKey(), $listItem) }}"
                            class="btn btn-sm btn-icon btn-light-danger btn-active-light-primary">
                             Löschen
                         </a>

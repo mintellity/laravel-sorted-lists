@@ -1,5 +1,5 @@
 <form
-    action="{{ route(\Mintellity\LaravelSortedLists\LaravelSortedLists::getRoute('sortedLists.updateItem'), $sortedListItem) }}"
+    action="{{ route(\Mintellity\LaravelSortedLists\LaravelSortedLists::getRoute('sortedLists.updateItem'), $sortedListItem->list(), $sortedListItem) }}"
     method="POST">
     @csrf
 

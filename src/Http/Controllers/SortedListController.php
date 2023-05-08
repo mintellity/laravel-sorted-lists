@@ -63,7 +63,7 @@ class SortedListController extends Controller
     /**
      * Show form to edit item.
      */
-    public function editItem(SortedListItem $sortedListItem): View
+    public function editItem(SortedList $sortedList, SortedListItem $sortedListItem): View
     {
         return view('sorted-lists::item-edit', [
             'sortedListItem' => $sortedListItem,
@@ -73,7 +73,7 @@ class SortedListController extends Controller
     /**
      * Update item.
      */
-    public function updateItem(SortedListItem $sortedListItem, SortedListItemRequest $request): RedirectResponse
+    public function updateItem(SortedList $sortedList, SortedListItem $sortedListItem, SortedListItemRequest $request): RedirectResponse
     {
         $data = $request->validated();
         $sortedListItem->update($data);
@@ -84,7 +84,7 @@ class SortedListController extends Controller
     /**
      * Delete item.
      */
-    public function destroyItem(SortedListItem $sortedListItem): RedirectResponse
+    public function destroyItem(SortedList $sortedList, SortedListItem $sortedListItem): RedirectResponse
     {
         $sortedListItem->delete();
 

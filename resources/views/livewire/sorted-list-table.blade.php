@@ -27,7 +27,7 @@
                     <td class="text-end">
                         <a href="{{ route(\Mintellity\LaravelSortedLists\LaravelSortedLists::getRoute('sortedLists.view'), $sortedList->getKey()) }}"
                            class="btn btn-sm btn-icon btn-light-primary btn-active-light-primary">
-                            <i class="fas fa-edit"></i>
+                            Bearbeiten
                         </a>
                     </td>
                 </tr>

@@ -20,15 +20,21 @@ class LaravelSortedLists
             ->group(function () {
                 Route::get('/', 'index')->name('index');
 
-                Route::get('view/{sortedList}', 'view')->name('view');
+                Route::prefix('{sortedList}')
+                    ->group(function () {
+                        Route::get('view', 'view')->name('view');
 
-                Route::get('createItem/{sortedList}', 'createItem')->name('createItem');
-                Route::post('storeItem/{sortedList}', 'storeItem')->name('storeItem');
+                        Route::get('create', 'createItem')->name('createItem');
+                        Route::post('store', 'storeItem')->name('storeItem');
 
-                Route::get('editItem/{sortedListItem}', 'editItem')->name('editItem');
-                Route::post('updateItem/{sortedListItem}', 'updateItem')->name('updateItem');
+                        Route::prefix('{sortedListItem}')
+                            ->group(function () {
+                                Route::get('edit', 'editItem')->name('editItem');
+                                Route::post('update', 'updateItem')->name('updateItem');
 
-                Route::get('destroyItem/{sortedListItem}', 'destroyItem')->name('destroyItem');
+                                Route::get('destroy', 'destroyItem')->name('destroyItem');
+                            });
+                    });
             });
     }
 
@@ -39,7 +45,7 @@ class LaravelSortedLists
     {
         $listClass = collect(config('sorted-lists.lists'))->search($sortedListKey);
 
-        if (! $listClass) {
+        if (!$listClass) {
             return null;
         }
 
@@ -53,10 +59,10 @@ class LaravelSortedLists
     {
         $prefix = config('sorted-lists.route_prefix');
 
-        if ($prefix && ! Str::endsWith($prefix, '.')) {
+        if ($prefix && !Str::endsWith($prefix, '.')) {
             $prefix .= '.';
         }
 
-        return $prefix.$routeName;
+        return $prefix . $routeName;
     }
 }
