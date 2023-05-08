@@ -20,7 +20,6 @@ class SortedListItemObserver
      */
     public function deleted(SortedListItem $sortedListItem): void
     {
-        //TODO
-        $sortedListItem->list->refreshSequence();
+        $sortedListItem->list()->refreshSequence();
     }
 }
