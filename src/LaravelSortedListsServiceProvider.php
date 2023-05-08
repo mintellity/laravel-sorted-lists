@@ -37,8 +37,9 @@ class LaravelSortedListsServiceProvider extends PackageServiceProvider
         Route::bind('sortedList', function ($value) {
             $sortedList = LaravelSortedLists::getList($value);
 
-            if ($sortedList !== null)
+            if ($sortedList !== null) {
                 return $sortedList;
+            }
 
             abort(404);
         });

@@ -8,17 +8,14 @@ use Mintellity\LaravelSortedLists\LaravelSortedLists;
 
 class SortedListTable extends Component
 {
-    /**
-     * @return View
-     */
     public function render(): View
     {
         $sortedLists = collect(config('sorted-lists.lists'))
-            ->mapWithKeys(fn($listName, $listKey) => [$listKey => LaravelSortedLists::getList($listName)])
+            ->mapWithKeys(fn ($listName, $listKey) => [$listKey => LaravelSortedLists::getList($listName)])
             ->filter();
 
         return view('sorted-lists::livewire.sorted-list-table', [
-            'sortedLists' => $sortedLists
+            'sortedLists' => $sortedLists,
         ]);
     }
 }

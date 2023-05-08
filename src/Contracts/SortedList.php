@@ -12,31 +12,24 @@ abstract class SortedList implements Wireable
 {
     private function __construct(
         private string $key
-    )
-    {
+    ) {
     }
 
     /**
      * Get the display name of this list.
-     *
-     * @return string
      */
     abstract public static function getName(): string;
 
     /**
      * Get the key of this list.
-     *
-     * @return string
      */
     public static function getKey(): string
     {
-        return config('sorted-lists.lists.' . static::class);
+        return config('sorted-lists.lists.'.static::class);
     }
 
     /**
      * Create a new instance of this list.
-     *
-     * @return static
      */
     public static function make(): static
     {
@@ -45,8 +38,6 @@ abstract class SortedList implements Wireable
 
     /**
      * Get all items of this list.
-     *
-     * @return Collection
      */
     public static function get(): Collection
     {
@@ -55,8 +46,6 @@ abstract class SortedList implements Wireable
 
     /**
      * All items of the list.
-     *
-     * @return Builder
      */
     public function items(): Builder
     {
@@ -65,8 +54,6 @@ abstract class SortedList implements Wireable
 
     /**
      * Refresh the sequence of the list, e.g. after deleting an element.
-     *
-     * @return void
      */
     public function refreshSequence(): void
     {
@@ -81,8 +68,6 @@ abstract class SortedList implements Wireable
 
     /**
      * Store this to Livewire component
-     *
-     * @return string
      */
     public function toLivewire(): string
     {
@@ -91,9 +76,6 @@ abstract class SortedList implements Wireable
 
     /**
      * Retrieve this from Livewire component
-     *
-     * @param $value
-     * @return static
      */
     public static function fromLivewire($value): static
     {

@@ -14,9 +14,6 @@ class SortedListController extends Controller
 {
     /**
      * Handle the redirect after create/edit/destroy of an item.
-     *
-     * @param SortedListItem $sortedListItem
-     * @return mixed
      */
     public function redirectAfterAction(SortedListItem $sortedListItem): mixed
     {
@@ -25,8 +22,6 @@ class SortedListController extends Controller
 
     /**
      * Overview over all lists.
-     *
-     * @return View
      */
     public function index(): View
     {
@@ -35,35 +30,24 @@ class SortedListController extends Controller
 
     /**
      * Show view of sorted list.
-     *
-     * @param SortedList $sortedList
-     * @return View
      */
     public function view(SortedList $sortedList): View
     {
         return view('sorted-lists::view', [
-            'sortedList' => $sortedList
+            'sortedList' => $sortedList,
         ]);
     }
 
     /**
      * Show form to create item.
-     *
-     * @param SortedList $sortedList
-     * @return View
      */
     public function createItem(SortedList $sortedList): View
     {
         return view('sorted-lists::item-create', [
-            'sortedList' => $sortedList
+            'sortedList' => $sortedList,
         ]);
     }
 
-    /**
-     * @param SortedList $sortedList
-     * @param SortedListItemRequest $request
-     * @return RedirectResponse
-     */
     public function storeItem(SortedList $sortedList, SortedListItemRequest $request): RedirectResponse
     {
         $data = $request->validated();
@@ -75,22 +59,14 @@ class SortedListController extends Controller
 
     /**
      * Show form to edit item.
-     *
-     * @param SortedListItem $sortedListItem
-     * @return View
      */
     public function editItem(SortedListItem $sortedListItem): View
     {
         return view('sorted-lists::item-edit', [
-            'sortedListItem' => $sortedListItem
+            'sortedListItem' => $sortedListItem,
         ]);
     }
 
-    /**
-     * @param SortedListItem $sortedListItem
-     * @param SortedListItemRequest $request
-     * @return RedirectResponse
-     */
     public function updateItem(SortedListItem $sortedListItem, SortedListItemRequest $request): RedirectResponse
     {
         $data = $request->validated();
@@ -99,10 +75,6 @@ class SortedListController extends Controller
         return $this->redirectAfterAction($sortedListItem);
     }
 
-    /**
-     * @param SortedListItem $sortedListItem
-     * @return RedirectResponse
-     */
     public function destroyItem(SortedListItem $sortedListItem): RedirectResponse
     {
         $sortedListItem->delete();

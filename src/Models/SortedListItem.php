@@ -35,8 +35,6 @@ class SortedListItem extends Model
 
     /**
      * The list this item belongs to.
-     *
-     * @return SortedList
      */
     public function list(): SortedList
     {

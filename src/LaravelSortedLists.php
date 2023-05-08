@@ -32,33 +32,28 @@ class LaravelSortedLists
             });
     }
 
-    /**
-     * @param string $sortedListKey
-     * @return SortedList|null
-     */
     public static function getList(string $sortedListKey): SortedList|null
     {
         $listClass = collect(config('sorted-lists.lists'))->search($sortedListKey);
 
-        if (!$listClass)
+        if (! $listClass) {
             return null;
+        }
 
         return $listClass::make();
     }
 
     /**
      * Get the route with optional prefix.
-     *
-     * @param string $routeName
-     * @return string
      */
     public static function getRoute(string $routeName): string
     {
         $prefix = config('sorted-lists.route_prefix');
 
-        if ($prefix && !Str::endsWith($prefix, '.'))
+        if ($prefix && ! Str::endsWith($prefix, '.')) {
             $prefix .= '.';
+        }
 
-        return $prefix . $routeName;
+        return $prefix.$routeName;
     }
 }
