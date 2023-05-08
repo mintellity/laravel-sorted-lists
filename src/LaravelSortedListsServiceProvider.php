@@ -3,6 +3,11 @@
 namespace Mintellity\LaravelSortedLists;
 
 use Illuminate\Support\Facades\Route;
+use Livewire\Livewire;
+use Mintellity\LaravelSortedLists\Http\Livewire\SortedListItemsTable;
+use Mintellity\LaravelSortedLists\Http\Livewire\SortedListTable;
+use Mintellity\LaravelSortedLists\Models\SortedListItem;
+use Mintellity\LaravelSortedLists\Observers\SortedListItemObserver;
 use Spatie\LaravelPackageTools\Package;
 use Spatie\LaravelPackageTools\PackageServiceProvider;
 
@@ -26,9 +31,18 @@ class LaravelSortedListsServiceProvider extends PackageServiceProvider
     {
         parent::bootingPackage();
 
+        Livewire::component('sorted-lists::items-table', SortedListItemsTable::class);
+        Livewire::component('sorted-lists::lists-table', SortedListTable::class);
+
         Route::bind('sortedList', function ($value) {
-            //TODO
-            return DefaultSortedList::make($value);
+            $sortedList = LaravelSortedLists::getList($value);
+
+            if ($sortedList !== null)
+                return $sortedList;
+
+            abort(404);
         });
+
+        SortedListItem::observe(SortedListItemObserver::class);
     }
 }

@@ -15,7 +15,7 @@ return new class extends Migration {
         Schema::create('sorted_list_items', function (Blueprint $table) {
             $table->uuid('sorted_list_item_id')->primary();
 
-            $table->string('list_key');
+            $table->string('sorted_list_key');
 
             $table->integer('sequence');
             $table->string('name');

@@ -14,7 +14,7 @@ class SortedListItemObserver
      */
     public function creating(SortedListItem $sortedListItem): void
     {
-        $maxSequence = SortedListItem::where('list_key', $sortedListItem->list_key)->items()->max('sequence');
+        $maxSequence = SortedListItem::where('sorted_list_key', $sortedListItem->sorted_list_key)->max('sequence');
         $sortedListItem->sequence = $maxSequence + 1;
     }
 

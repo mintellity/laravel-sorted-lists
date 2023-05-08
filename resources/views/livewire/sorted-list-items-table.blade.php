@@ -31,12 +31,12 @@
                                 </td>
 
                                 <td class="text-end">
-                                    <a href="{{route('admin.sorted-list.edit-item', $listItem)}}"
+                                    <a href="{{route(\Mintellity\LaravelSortedLists\LaravelSortedLists::getRoute('sortedLists.editItem'), $listItem)}}"
                                        class="btn btn-sm btn-icon btn-light-primary btn-active-light-primary">
                                         <i class="fas fa-edit"></i>
                                     </a>
 
-                                    <a href="{{route('admin.sorted-list.destroy-item', $listItem)}}"
+                                    <a href="{{route(\Mintellity\LaravelSortedLists\LaravelSortedLists::getRoute('sortedLists.destroyItem'), $listItem)}}"
                                        class="btn btn-sm btn-icon btn-light-danger btn-active-light-primary confirm-destroy">
                                         <i class="fas fa-trash"></i>
                                     </a>

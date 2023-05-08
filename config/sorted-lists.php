@@ -4,6 +4,7 @@
 
 return [
     'lists' => [
-        'test' => 'Create new lists in the config'
+        // SortedList::class => 'test',
     ],
+    'route_prefix' => '',
 ];

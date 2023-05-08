@@ -1,21 +1,21 @@
 <?php
 
-namespace App\Http\Livewire;
+namespace Mintellity\LaravelSortedLists\Http\Livewire;
 
-use App\Contracts\DefaultSortedList;
-use App\Models\SortedListItem;
 use Illuminate\Contracts\View\View;
 use Livewire\Component;
+use Mintellity\LaravelSortedLists\Contracts\SortedList;
+use Mintellity\LaravelSortedLists\Models\SortedListItem;
 
 class SortedListItemsTable extends Component
 {
-    public DefaultSortedList $sortedList;
+    public SortedList $sortedList;
 
     /**
-     * @param DefaultSortedList $sortedList
+     * @param SortedList $sortedList
      * @return void
      */
-    public function mount(DefaultSortedList $sortedList): void
+    public function mount(SortedList $sortedList): void
     {
         $this->sortedList = $sortedList;
     }
@@ -27,7 +27,7 @@ class SortedListItemsTable extends Component
     {
         $listItems = $this->sortedList->items()->get();
 
-        return view('admin.sorted-list.livewire.sorted-list-items-table', [
+        return view('sorted-lists::livewire.sorted-list-items-table', [
             'listItems' => $listItems
         ]);
     }

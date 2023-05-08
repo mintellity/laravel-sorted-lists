@@ -2,15 +2,62 @@
 
 namespace Mintellity\LaravelSortedLists\Http\Controllers;
 
+use Illuminate\Contracts\View\View;
 use Illuminate\Http\RedirectResponse;
 use Illuminate\Routing\Controller;
 use Mintellity\LaravelSortedLists\Contracts\SortedList;
 use Mintellity\LaravelSortedLists\Http\Requests\SortedListItemRequest;
+use Mintellity\LaravelSortedLists\LaravelSortedLists;
 use Mintellity\LaravelSortedLists\Models\SortedListItem;
 
 class SortedListController extends Controller
 {
-    //TODO Redirect after create/update/delete
+    /**
+     * Handle the redirect after create/edit/destroy of an item.
+     *
+     * @param SortedListItem $sortedListItem
+     * @return mixed
+     */
+    public function redirectAfterAction(SortedListItem $sortedListItem): mixed
+    {
+        return redirect()->route(LaravelSortedLists::getRoute('sortedLists.view'), $sortedListItem->sorted_list_key);
+    }
+
+    /**
+     * Overview over all lists.
+     *
+     * @return View
+     */
+    public function index(): View
+    {
+        return view('sorted-lists::index');
+    }
+
+    /**
+     * Show view of sorted list.
+     *
+     * @param SortedList $sortedList
+     * @return View
+     */
+    public function view(SortedList $sortedList): View
+    {
+        return view('sorted-lists::view', [
+            'sortedList' => $sortedList
+        ]);
+    }
+
+    /**
+     * Show form to create item.
+     *
+     * @param SortedList $sortedList
+     * @return View
+     */
+    public function createItem(SortedList $sortedList): View
+    {
+        return view('sorted-lists::item-create', [
+            'sortedList' => $sortedList
+        ]);
+    }
 
     /**
      * @param SortedList $sortedList
@@ -20,12 +67,24 @@ class SortedListController extends Controller
     public function storeItem(SortedList $sortedList, SortedListItemRequest $request): RedirectResponse
     {
         $data = $request->validated();
-        $data['sorted_list_name'] = $sortedList->getKey();
-        SortedListItem::create($data);
+        $data['sorted_list_key'] = $sortedList->getKey();
+        $sortedListItem = SortedListItem::create($data);
 
-        return redirect()->route('admin.sorted-list.edit', $sortedList->getKey());
+        return $this->redirectAfterAction($sortedListItem);
     }
 
+    /**
+     * Show form to edit item.
+     *
+     * @param SortedListItem $sortedListItem
+     * @return View
+     */
+    public function editItem(SortedListItem $sortedListItem): View
+    {
+        return view('sorted-lists::item-edit', [
+            'sortedListItem' => $sortedListItem
+        ]);
+    }
 
     /**
      * @param SortedListItem $sortedListItem
@@ -37,7 +96,7 @@ class SortedListController extends Controller
         $data = $request->validated();
         $sortedListItem->update($data);
 
-        return redirect()->route('admin.sorted-list.edit', $sortedListItem->list_key);
+        return $this->redirectAfterAction($sortedListItem);
     }
 
     /**
@@ -48,6 +107,6 @@ class SortedListController extends Controller
     {
         $sortedListItem->delete();
 
-        return redirect()->route('admin.sorted-list.edit', $sortedListItem->list_key);
+        return $this->redirectAfterAction($sortedListItem);
     }
 }

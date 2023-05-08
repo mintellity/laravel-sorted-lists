@@ -8,6 +8,8 @@ use Illuminate\Database\Eloquent\Relations\HasMany;
 use Illuminate\Database\Eloquent\Relations\HasOne;
 use Illuminate\Database\Eloquent\SoftDeletes;
 use Illuminate\Support\Str;
+use Mintellity\LaravelSortedLists\Contracts\SortedList;
+use Mintellity\LaravelSortedLists\LaravelSortedLists;
 
 class SortedListItem extends Model
 {
@@ -16,7 +18,7 @@ class SortedListItem extends Model
     protected $keyType = 'string';
 
     protected $fillable = [
-        'list_key',
+        'sorted_list_key',
         'sequence',
         'name',
     ];
@@ -34,6 +36,16 @@ class SortedListItem extends Model
     }
 
     /**
+     * The list this item belongs to.
+     *
+     * @return SortedList
+     */
+    public function list(): SortedList
+    {
+        return LaravelSortedLists::getList($this->sorted_list_key);
+    }
+
+    /**
      * All items in this list.
      *
      * @return HasMany
@@ -41,7 +53,7 @@ class SortedListItem extends Model
     public function siblings(): HasMany
     {
         return $this->hasMany(static::class, 'sorted_list_item_id', 'sorted_list_item_id')
-            ->where('sorted_list_name', $this->list_key);
+            ->where('sorted_list_key', $this->list_key);
     }
 
     /**

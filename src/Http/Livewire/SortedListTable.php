@@ -1,26 +1,23 @@
 <?php
 
-namespace App\Http\Livewire;
+namespace Mintellity\LaravelSortedLists\Http\Livewire;
 
-use App\Contracts\DefaultSortedList;
 use Illuminate\Contracts\View\View;
 use Livewire\Component;
+use Mintellity\LaravelSortedLists\LaravelSortedLists;
 
 class SortedListTable extends Component
 {
-    public $orderBy = 'name';
-    public $orderAsc = true;
-
     /**
      * @return View
      */
     public function render(): View
     {
-        $sortedLists = collect(config('sortable-lists'))
-            ->mapWithKeys(fn($listName, $listKey) => [$listKey => DefaultSortedList::make(listKey: $listKey)])
-            ->sortBy($this->orderBy, SORT_REGULAR, $this->orderAsc ? 'asc' : 'desc');
+        $sortedLists = collect(config('sorted-lists.lists'))
+            ->mapWithKeys(fn($listName, $listKey) => [$listKey => LaravelSortedLists::getList($listName)])
+            ->filter();
 
-        return view('admin.sorted-list.livewire.sorted-list-table', [
+        return view('sorted-lists::livewire.sorted-list-table', [
             'sortedLists' => $sortedLists
         ]);
     }

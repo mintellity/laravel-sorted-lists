@@ -38,15 +38,15 @@
                         <tbody class="fw-bold text-gray-600">
                         @forelse($sortedLists as $sortedList)
                             @php
-                                /** @var \App\Contracts\DefaultSortedList $sortedList */
+                                /** @var \Mintellity\LaravelSortedLists\Contracts\SortedList $sortedList */
                             @endphp
                             <tr class="odd">
                                 <td>
-                                    <a href="{{ route('admin.sorted-list.edit', $sortedList->getKey()) }}"
-                                       class="text-gray-800 text-hover-primary mb-1">{{ $sortedList->listName }}</a>
+                                    <a href="{{ route(\Mintellity\LaravelSortedLists\LaravelSortedLists::getRoute('sortedLists.view'), $sortedList->getKey()) }}"
+                                       class="text-gray-800 text-hover-primary mb-1">{{ $sortedList->getName() }}</a>
                                 </td>
                                 <td class="text-end">
-                                    <a href="{{ route('admin.sorted-list.edit', $sortedList->getKey()) }}"
+                                    <a href="{{ route(\Mintellity\LaravelSortedLists\LaravelSortedLists::getRoute('sortedLists.view'), $sortedList->getKey()) }}"
                                        class="btn btn-sm btn-icon btn-light-primary btn-active-light-primary">
                                         <i class="fas fa-edit"></i>
                                     </a>
