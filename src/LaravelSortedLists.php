@@ -32,6 +32,9 @@ class LaravelSortedLists
             });
     }
 
+    /**
+     * Get a list instance for the given key.
+     */
     public static function getList(string $sortedListKey): SortedList|null
     {
         $listClass = collect(config('sorted-lists.lists'))->search($sortedListKey);

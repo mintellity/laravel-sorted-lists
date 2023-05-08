@@ -48,6 +48,9 @@ class SortedListController extends Controller
         ]);
     }
 
+    /**
+     * Store item.
+     */
     public function storeItem(SortedList $sortedList, SortedListItemRequest $request): RedirectResponse
     {
         $data = $request->validated();
@@ -67,6 +70,9 @@ class SortedListController extends Controller
         ]);
     }
 
+    /**
+     * Update item.
+     */
     public function updateItem(SortedListItem $sortedListItem, SortedListItemRequest $request): RedirectResponse
     {
         $data = $request->validated();
@@ -75,6 +81,9 @@ class SortedListController extends Controller
         return $this->redirectAfterAction($sortedListItem);
     }
 
+    /**
+     * Delete item.
+     */
     public function destroyItem(SortedListItem $sortedListItem): RedirectResponse
     {
         $sortedListItem->delete();
