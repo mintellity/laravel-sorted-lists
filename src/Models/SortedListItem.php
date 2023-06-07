@@ -57,7 +57,7 @@ class SortedListItem extends Model
     {
         return new HasOne(
             $this->siblings()
-                ->firstWhere('sequence', '>', $this->position)
+                ->firstWhere('sequence', '<', $this->position)
                 ->getQuery(),
             $this,
             $this->getKeyName(),
